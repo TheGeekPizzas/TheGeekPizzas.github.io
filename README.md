@@ -1,2 +1,2 @@
-# TheGeekPizza.github.io
-thegeekpizza.github.io in alpha!
+# TheGeekPizzas.github.io
+thegeekpizzas.github.io in alpha!
