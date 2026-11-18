@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>You Are An Idiot</title>
+    <!-- Meta descripción y autor -->
+    <meta name="description" content="This is the orgional and the best flash video on the 'net. Once found on www.youdontknowwhoiam.org, not found where it belong, right here on...">
+    <meta name="author" content="The ADR and Jazzy">
+    <!-- Favicon de la pestaña -->
+    <link rel="icon" type="image/x-icon" href="youareanidiot.ico">
+    <script src="ruffle/ruffle.js"></script>
+</head>
+<body style="background-color: black; margin: 0; overflow: hidden;">
+
+    <div id="reproductor"></div>
+
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("DOMContentLoaded", () => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("reproductor");
+            
+            player.style.width = "100vw";
+            player.style.height = "100vh";
+            player.style.display = "block";
+            
+            container.appendChild(player);
+            player.ruffle().load("youare.swf");
+        });
+
+        // Bloqueo de F12, Ctrl+S y sus combinaciones
+        document.addEventListener("keydown", function (e) {
+            const key = e.key.toLowerCase();
+
+            // Bloquea F12 solo o con Ctrl, Shift, Alt
+            if (e.key === "F12" || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Bloquea Ctrl + S (Guardar) y Ctrl + Shift + S (tanto en Windows como Cmd en Mac)
+            if ((e.ctrlKey || e.metaKey) && key === "s") {
+                e.preventDefault();
+                return false;
+            }
+
+            // Bloquea combinaciones equivalentes a F12 (Ctrl+Shift+I / J / C) y ver código fuente (Ctrl+U)
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && (key === "i" || key === "j" || key === "c")) {
+                e.preventDefault();
+                return false;
+            }
+            if ((e.ctrlKey || e.metaKey) && key === "u") {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+
+</body>
+</html>
