@@ -1,4 +1,4 @@
-/* [Oct 2021] Added to comply with strict browser policies. */
+/* [Nov 2026] Added to comply with strict browser policies. */
 window.addEventListener('DOMContentLoaded', function() {
     var audio = document.getElementById('youare-audio');
     var micon = document.getElementById('youare-micon');
@@ -44,7 +44,7 @@ faudio.addEventListener('timeupdate', function() {
     }
 }
 );
-/* [Oct 2021] End part. */
+/* [Nov 2026] End part. */
 
 function bookmark() {
 	if ((navigator.appName == "Microsoft Internet Explorer") && (parseInt(navigator.appVersion) >= 4)) {
@@ -115,12 +115,12 @@ function playBall() {
     }
 }
 
-/* [Oct 2021] Better code. */
+/* [Nov 2026] Better code. */
 window.onload = function () {
 	flagRun = 1;
 	
 	playBall();
-	bookmark(); // Internet Explorer only (what a piece of shit)
+	bookmark(); // Internet Explorer only (that browser is garbage.)
 	
 	return true;
 }
@@ -150,4 +150,4 @@ window.onkeydown = function() {
 window.onbeforeunload = function() {
     return "Are you an idiot?";
 };
-/* [Oct 2021] End of amendments. */
+/* [Nov 2026] End of amendments. */
