@@ -1,61 +1,82 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>You are an Idiot! (dot org)</title>
-    <!-- Meta descripción y autor -->
-    <meta name="description" content="This is the orgional and the best flash video on the 'net. Once found on www.youdontknowwhoiam.org, not found where it belong, right here on...">
-    <meta name="author" content="The ADR and Jazzy">
-    <!-- Favicon de la pestaña -->
-    <link rel="icon" type="image/x-icon" href="youareanidiot.ico">
-    <script src="ruffle/ruffle.js"></script>
+  <meta charset="UTF-8">
+  <title>You are an idiot!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      overflow-x: hidden;
+    }
+    ruffle-player {
+      display: block;
+      width: 100%;
+      height: 101vh;
+    }
+  </style>
 </head>
-<body style="background-color: black; margin: 0; overflow: hidden;">
+<body>
+  <script src="ruffle/ruffle.js"></script>
+  <script>
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.RufflePlayer.config = {
+      publicPath: "ruffle/",
+      quality: "low"
+    };
 
-    <div id="reproductor"></div>
+    window.addEventListener("load", () => {
+      const player = window.RufflePlayer.newest().createPlayer();
+      document.body.appendChild(player);
+      player.load("youare.swf");
 
-    <script>
-        window.RufflePlayer = window.RufflePlayer || {};
-        window.addEventListener("DOMContentLoaded", () => {
-            const ruffle = window.RufflePlayer.newest();
-            const player = ruffle.createPlayer();
-            const container = document.getElementById("reproductor");
-            
-            player.style.width = "100vw";
-            player.style.height = "100vh";
-            player.style.display = "block";
-            
-            container.appendChild(player);
-            player.ruffle().load("youare.swf");
-        });
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          player.pause();
+        } else {
+          player.play();
+        }
+      });
 
-        // Bloqueo de F12, Ctrl+S y sus combinaciones
-        document.addEventListener("keydown", function (e) {
-            const key = e.key.toLowerCase();
+      // Evita que Ruffle se robe el teclado tras hacer clic para activar el audio
+      document.addEventListener("click", () => {
+        setTimeout(() => {
+          if (document.activeElement) {
+            document.activeElement.blur();
+          }
+          window.focus();
+        }, 50);
+      });
+    });
 
-            // Bloquea F12 solo o con Ctrl, Shift, Alt
-            if (e.key === "F12" || e.keyCode === 123) {
-                e.preventDefault();
-                return false;
-            }
+    // Intercepción limpia basada en tu archivo (sin pop-ups ni bloqueo de salida)
+    window.addEventListener("keydown", function(event) {
+      var keyCode = event.keyCode || event.which;
 
-            // Bloquea Ctrl + S (Guardar) y Ctrl + Shift + S (tanto en Windows como Cmd en Mac)
-            if ((e.ctrlKey || e.metaKey) && key === "s") {
-                e.preventDefault();
-                return false;
-            }
+      // Bloquea F12 (123) y herramientas de desarrollo (Ctrl+Shift+I/J/C, Ctrl+U)
+      if (keyCode == 123 || ((event.ctrlKey || event.metaKey) && event.shiftKey && (keyCode == 73 || keyCode == 74 || keyCode == 67)) || ((event.ctrlKey || event.metaKey) && keyCode == 85)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        return false;
+      }
 
-            // Bloquea combinaciones equivalentes a F12 (Ctrl+Shift+I / J / C) y ver código fuente (Ctrl+U)
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && (key === "i" || key === "j" || key === "c")) {
-                e.preventDefault();
-                return false;
-            }
-            if ((e.ctrlKey || e.metaKey) && key === "u") {
-                e.preventDefault();
-                return false;
-            }
-        });
-    </script>
+      // Intercepta Ctrl + S antes de descargar y muestra el título de la pestaña
+      if ((event.ctrlKey || event.metaKey) && keyCode == 83) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        alert(document.title);
+        return false;
+      }
 
+      // Intercepta Ctrl (17), Alt (18), Supr/Delete (46) y F4 (115) igual que en tu script
+      if (keyCode == 17 || keyCode == 18 || keyCode == 46 || keyCode == 115) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        alert(document.title);
+        return false;
+      }
+    }, true);
+  </script>
 </body>
 </html>
