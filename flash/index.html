@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Flash Player</title>
+  <link id="favicon" rel="icon" type="image/png" href="flash.png">
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: "Times New Roman", Times, serif; }
+    body {
+      margin: 0; background: #1e1e1e; color: #fff; height: 100dvh; overflow: hidden;
+      display: flex; justify-content: center; align-items: center; user-select: none;
+    }
+    .flash-player {
+      width: min(620px, 92vw); aspect-ratio: 16 / 10; background: #2b2b2b;
+      border: 2px solid #4a4a4a; border-radius: 6px; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; cursor: pointer; padding: 24px;
+      text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+    .flash-logo { width: 68px; height: 68px; object-fit: contain; margin-bottom: 16px; pointer-events: none; -webkit-user-drag: none; }
+    .flash-title { font-size: clamp(16px, 4vw, 20px); font-weight: 600; color: #f1f1f1; margin: 0 0 8px; }
+    .flash-sub { font-size: clamp(13px, 3.3vw, 15px); color: #aaa; margin: 0 0 20px; }
+    .btn-flash {
+      background: linear-gradient(to bottom, #f5f5f5, #dcdcdc); color: #222; border: 1px solid #888;
+      padding: 10px 22px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer;
+    }
+    .btn-flash:hover { background: #fff; }
+
+    .glitch-active { animation: graphicGlitch 0.12s infinite; cursor: none; }
+    @keyframes graphicGlitch {
+      0%   { filter: invert(0) contrast(200%); transform: translate(0, 0); }
+      25%  { filter: invert(1) hue-rotate(90deg); transform: translate(-2vw, 1.5vh); }
+      50%  { filter: contrast(400%) brightness(0.4); transform: translate(2vw, -1.5vh); }
+      75%  { filter: invert(1) saturate(500%); transform: translate(-1.5vw, -1vh); }
+      100% { filter: none; transform: translate(0, 0); }
+    }
+
+    #error-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); color: #ff2a2a;
+      padding: clamp(20px, 6vw, 45px); font-size: clamp(14px, 3.8vw, 19px); line-height: 1.5; z-index: 100; word-break: break-word;
+    }
+    #ending {
+      display: none; position: fixed; inset: 0; background: #0f172a; color: #fff; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center; z-index: 200; cursor: default; padding: 20px;
+    }
+    .gif-wrapper { position: relative; display: inline-block; margin-bottom: 18px; }
+    #pug-gif {
+      width: min(340px, 75vw); max-height: 50dvh; object-fit: contain; border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); pointer-events: none; -webkit-user-drag: none; -webkit-touch-callout: none;
+    }
+    .gif-shield { position: absolute; inset: 0; z-index: 10; }
+    #ending h1 { font-size: clamp(24px, 6vw, 36px); margin: 0 0 8px; }
+    #ending p { font-size: clamp(14px, 3.8vw, 17px); color: #94a3b8; margin: 0; }
+    .btn-restart { margin-top: 22px; padding: 12px 26px; font-size: 16px; border: none; border-radius: 6px; background: #3b82f6; color: #fff; cursor: pointer; }
+  </style>
+</head>
+<body oncontextmenu="return false;">
+
+  <div class="flash-player" id="player">
+    <img class="flash-logo" src="media/flash.webp" alt="Adobe Flash Player" draggable="false">
+    <p class="flash-title">Click here to play Flash Player</p>
+    <p class="flash-sub">This website can enable Flash Player with the help of Ruffle and view all Flash content</p>
+    <div class="btn-flash">Play Flash Player</div>
+  </div>
+
+  <div id="error-overlay">
+    <p>*** HARDWARE_INTERRUPT_EXCEPTION (0x0000001E) ***</p>
+    <p id="device-data"></p>
+    <p id="real-data"></p>
+    <p>VIDEO MEMORY DUMP IN PROGRESS... DO NOT TURN OFF YOUR DEVICE.</p>
+  </div>
+
+  <div id="ending">
+    <div class="gif-wrapper" oncontextmenu="return false;" ondragstart="return false;">
+      <img id="pug-gif" src="media/yesyouare.gif" alt="Pug" draggable="false">
+      <div class="gif-shield"></div>
+    </div>
+    <h1>😂 Just kidding!</h1>
+    <p>Neither your screen nor your audio was damaged.</p>
+    <button class="btn-restart" onclick="location.reload()">Restart</button>
+  </div>
+
+  <script>
+    let isRunning = false, prankInProgress = false;
+    const PRANK_DURATION_MS = 25000;
+
+    document.addEventListener("dragstart", e => e.preventDefault());
+    document.getElementById("player").addEventListener("pointerdown", triggerPrank);
+
+    window.addEventListener("keydown", e => {
+      if (prankInProgress && (e.key === "F5" || e.keyCode === 116 || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "r"))) {
+        e.preventDefault();
+      }
+    });
+
+    window.addEventListener("beforeunload", e => {
+      if (prankInProgress) { e.preventDefault(); e.returnValue = ""; }
+    });
+
+    async function triggerPrank() {
+      if (isRunning) return;
+      isRunning = prankInProgress = true;
+
+      try {
+        const el = document.documentElement;
+        if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      } catch (e) {}
+
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if (ctx.state === "suspended") await ctx.resume();
+
+      const osc = ctx.createOscillator(), gain = ctx.createGain(), comp = ctx.createDynamicsCompressor();
+      comp.threshold.value = -24; comp.ratio.value = 12;
+      osc.type = "sawtooth"; osc.frequency.value = 110; gain.gain.value = 3.5;
+
+      osc.connect(gain); gain.connect(comp); comp.connect(ctx.destination);
+      osc.start();
+      const noiseTimer = setInterval(() => { osc.frequency.value = Math.random() > 0.5 ? 95 : 190; }, 75);
+
+      document.body.classList.add("glitch-active");
+      document.getElementById("error-overlay").style.display = "block";
+
+      let vibrationTimer = null;
+      try {
+        if (navigator.vibrate) {
+          navigator.vibrate([400, 100]);
+          vibrationTimer = setInterval(() => navigator.vibrate([400, 100]), 500);
+        }
+      } catch (e) {}
+
+      const ua = navigator.userAgent;
+      const os = /Android/i.test(ua) ? "ANDROID OS" : /iPhone|iPad|iPod/i.test(ua) ? "APPLE iOS" : /Windows/i.test(ua) ? "WINDOWS PC" : /Mac/i.test(ua) ? "MACOS" : /Linux/i.test(ua) ? "LINUX" : "UNKNOWN";
+      document.getElementById("device-data").textContent = `SYSTEM DETECTED: ${os}`;
+
+      let batTxt = "";
+      try { const b = await navigator.getBattery(); batTxt = `POWER: ${Math.round(b.level * 100)}% | `; } catch {}
+      document.getElementById("real-data").textContent = `${batTxt}SCREEN: ${screen.width}x${screen.height}px`;
+
+      setTimeout(() => {
+        prankInProgress = false;
+        clearInterval(noiseTimer);
+        clearInterval(vibrationTimer);
+        try { osc.stop(); ctx.close(); } catch (e) {}
+        try { if (navigator.vibrate) navigator.vibrate(0); } catch (e) {}
+
+        document.body.classList.remove("glitch-active");
+        document.getElementById("error-overlay").style.display = "none";
+        document.getElementById("ending").style.display = "flex";
+
+        document.title = "You are an idiot!";
+        const fav = document.getElementById("favicon");
+        fav.type = "image/x-icon";
+        fav.href = "youareanidiot.ico";
+
+        try {
+          if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+          else if (document.webkitFullscreenElement) document.webkitExitFullscreen();
+        } catch (e) {}
+      }, PRANK_DURATION_MS);
+    }
+  </script>
+</body>
+</html>
