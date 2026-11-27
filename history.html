@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The History of the Hamburger</title>
+    <!-- Favicon configurado como burger.png -->
+    <link rel="icon" type="image/png" href="burger.png">
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Emojis relacionados con hamburguesas e ingredientes -->
+    <div id="emoji-container">
+        <div class="floating-emoji" style="top: 10%; left: 7%; transform: rotate(-15deg);">🍔</div>
+        <div class="floating-emoji" style="top: 18%; right: 9%; transform: rotate(20deg);">🥩</div>
+        <div class="floating-emoji" style="top: 35%; left: 10%; transform: rotate(25deg);">🧀</div>
+        <div class="floating-emoji" style="top: 45%; right: 6%; transform: rotate(-20deg);">🥬</div>
+        <div class="floating-emoji" style="top: 62%; left: 6%; transform: rotate(-10deg);">🍅</div>
+        <div class="floating-emoji" style="top: 70%; right: 11%; transform: rotate(15deg);">🧅</div>
+        <div class="floating-emoji" style="top: 84%; left: 12%; transform: rotate(30deg);">🥓</div>
+        <div class="floating-emoji" style="top: 88%; right: 8%; transform: rotate(-15deg);">🍟</div>
+    </div>
+
+    <div class="container">
+        <h1>The History of the Hamburger</h1>
+        <div class="subtitle">From Baltic Trade Routes to a Worldwide Fast-Food Classic</div>
+
+        <h2>Ancient Roots and the Mongol Empire</h2>
+        <p>
+            The story of the hamburger begins long before the modern bun was ever baked. In the 13th century, Mongol horsemen led by Genghis Khan carried scraps of raw lamb or mutton under their saddles while riding across Eurasia. The constant motion tenderized the meat, allowing soldiers to eat it quickly without stopping to build a fire.
+        </p>
+        <p>
+            When the Mongols invaded Russia, local cooks adopted this minced meat tradition, adding onions and eggs to create what became known as <em>steak tartare</em>.
+        </p>
+
+        <h2>The Port of Hamburg</h2>
+        <p>
+            By the 17th and 18th centuries, trade ships traveling between Russian Baltic ports and Germany brought the dish to Hamburg, one of Europe's largest shipping hubs. Local chefs seasoned the minced beef, shaped it into patties, and lightly cooked it, calling it <em>Hamburg steak</em>.
+        </p>
+        <p>
+            In the 19th century, millions of German immigrants boarded ships in Hamburg bound for the United States. Port restaurants in New York City began serving "Hamburg-style steak" to attract homesick sailors and travelers.
+        </p>
+
+        <h2>Putting the Patty Between Bread</h2>
+        <p>
+            The exact inventor of the modern hamburger sandwich remains a subject of friendly debate across the United States. Several late-19th-century cooks claimed to have placed a cooked Hamburg steak between two slices of bread so factory workers and fairgoers could eat it while walking.
+        </p>
+        <p>
+            Among the most famous pioneers are Charlie Nagreen in Seymour, Wisconsin (1885), the Menches brothers in Hamburg, New York (1885), and Louis Lassen of Louis' Lunch in New Haven, Connecticut (1900), which is officially recognized by the U.S. Library of Congress as the birthplace of the hamburger.
+        </p>
+
+        <h2>The Rise of Fast Food</h2>
+        <p>
+            For decades, hamburgers were often viewed with suspicion due to unregulated meatpacking practices. That changed in 1921 when Walter Anderson and Billy Ingram founded <strong>White Castle</strong> in Wichita, Kansas, using spotless white buildings and fresh beef to win public trust.
+        </p>
+        <p>
+            Later, in the 1940s and 1950s, the McDonald brothers revolutionized the industry in California with their assembly-line Speedee Service System, turning the hamburger into an affordable, standardized staple of American car culture.
+        </p>
+
+        <h2>A Global Culinary Icon</h2>
+        <p>
+            Today, billions of hamburgers are consumed every year across every continent. From simple roadside diners to gourmet restaurant creations and modern plant-based alternatives, the humble beef patty between two buns remains one of the most adaptable and beloved foods in the world.
+        </p>
+    </div>
+
+    <script>
+        const emojiContainer = document.getElementById('emoji-container');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            const scrollProgress = docHeight > 0 ? scrollTop / docHeight : 0;
+            const maxOpacity = 0.35;
+            const currentOpacity = Math.sin(scrollProgress * Math.PI) * maxOpacity;
+
+            emojiContainer.style.opacity = Math.max(0, currentOpacity).toFixed(3);
+        });
+    </script>
+
+</body>
+</html>
