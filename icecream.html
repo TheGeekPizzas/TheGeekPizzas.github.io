@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The History of Ice Cream</title>
+    <link rel="icon" type="image/x-icon" href="icecream.ico">
+    <!-- Enlace actualizado a styles.css -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="emoji-container">
+        <div class="floating-emoji" style="top: 10%; left: 7%; transform: rotate(-15deg);">🍦</div>
+        <div class="floating-emoji" style="top: 18%; right: 9%; transform: rotate(20deg);">🍨</div>
+        <div class="floating-emoji" style="top: 35%; left: 10%; transform: rotate(25deg);">🍧</div>
+        <div class="floating-emoji" style="top: 45%; right: 6%; transform: rotate(-20deg);">🍓</div>
+        <div class="floating-emoji" style="top: 62%; left: 6%; transform: rotate(-10deg);">🍫</div>
+        <div class="floating-emoji" style="top: 70%; right: 11%; transform: rotate(15deg);">🍒</div>
+        <div class="floating-emoji" style="top: 84%; left: 12%; transform: rotate(30deg);">🧇</div>
+        <div class="floating-emoji" style="top: 88%; right: 8%; transform: rotate(-15deg);">❄️</div>
+    </div>
+
+    <div class="container">
+        <h1>The History of Ice Cream</h1>
+        <div class="subtitle">From Mountain Snow Delicacies to a Sweet Global Classic</div>
+
+        <h2>Ancient Frozen Treats</h2>
+        <p>
+            The origins of ice cream date back thousands of years to ancient civilizations that discovered how to harvest and store winter snow. As early as 500 BCE, Persians poured sweet grape-juice concentrates over snow brought down from nearby mountains to create a refreshing summer dessert known as <em>sharbat</em>.
+        </p>
+        <p>
+            In ancient China during the Tang Dynasty, rulers enjoyed a frozen mixture made from heated buffalo, cow, or goat milk fermented with flour and flavored with camphor, packed into metal tubes and chilled in ice. Similarly, the Roman Emperor Nero famously sent runners to the mountains to collect snow, which was then flavored with honey and fruit juices.
+        </p>
+
+        <h2>Arabian Influence and Italian Gelato</h2>
+        <p>
+            During the Middle Ages, Arab traders introduced flavored iced drinks and syrups to Sicily and southern Italy. By the 16th century, Italian cooks refined these recipes by discovering that mixing salt with ice lowered the freezing point enough to freeze sweetened cream and milk smoothly.
+        </p>
+        <p>
+            In Florence, architect and chef Bernardo Buontalenti is often credited with creating modern gelato for the Medici court, combining milk, cream, egg yolks, sugar, and wine into a rich, velvety dessert that quickly captivated European aristocracy.
+        </p>
+
+        <h2>Arrival in America and the Hand-Cranked Freezer</h2>
+        <p>
+            Ice cream crossed the Atlantic to North America in the 1700s, initially remaining a rare luxury enjoyed by wealthy colonists and figures such as George Washington and Thomas Jefferson. Because ice was difficult to store, making ice cream required immense labor.
+        </p>
+        <p>
+            Everything changed in 1843 when Nancy Johnson of Philadelphia patented the hand-cranked ice cream freezer. Her invention used a wooden bucket filled with ice and salt surrounding a metal cylinder with a spinning paddle, allowing anyone to make smooth ice cream at home in minutes.
+        </p>
+
+        <h2>The Birth of the Ice Cream Cone</h2>
+        <p>
+            While ice cream parlors flourished in the late 19th century, ice cream became an everyday street food at the 1904 World's Fair in St. Louis, Missouri. According to popular history, an ice cream vendor ran out of paper dishes and teamed up with Ernest Hamwi, a Syrian pastry vendor selling thin, crisp waffles called <em>zalabia</em> next door.
+        </p>
+        <p>
+            Hamwi rolled his warm waffles into a cone shape to hold the scoops of ice cream, creating an edible container that became an instant sensation.
+        </p>
+
+        <h2>A Beloved Worldwide Dessert</h2>
+        <p>
+            With the invention of modern mechanical refrigeration and commercial freezers in the 20th century, ice cream transformed into an accessible treat enjoyed in every corner of the globe. From artisanal Italian gelato and Japanese mochi ice cream to classic sundaes and milkshakes, it remains one of the world's favorite comforts.
+        </p>
+    </div>
+
+    <script>
+        const emojiContainer = document.getElementById('emoji-container');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            const scrollProgress = docHeight > 0 ? scrollTop / docHeight : 0;
+            const maxOpacity = 0.35;
+            const currentOpacity = Math.sin(scrollProgress * Math.PI) * maxOpacity;
+
+            emojiContainer.style.opacity = Math.max(0, currentOpacity).toFixed(3);
+        });
+    </script>
+
+</body>
+</html>
