@@ -4,184 +4,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The History of Pizza</title>
-    <!-- Favicon link pointing to pizza.png -->
+    <!-- Favicon configurado como pizza.png -->
     <link rel="icon" type="image/png" href="pizza.png">
     <style>
-        :root {
-            --red: #C82333;
-            --white: #F8F9FA;
-            --green: #28A745;
-            --dark: #212529;
-        }
-
         body {
-            font-family: 'Times New Roman', Times, serif;
-            line-height: 1.6;
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.8;
+            color: #2c2a29;
+            /* Fondo con degradado suave y colores relajantes */
+            background: linear-gradient(180deg, #f4f1ea 0%, #e8ede6 50%, #f5ebe0 100%);
+            background-attachment: fixed;
             margin: 0;
             padding: 0;
-            background-color: var(--white);
-            color: var(--dark);
-        }
-
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://unsplash.com') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
-
-        header p {
-            font-size: 1.5rem;
-            font-style: italic;
-            margin-top: 10px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 60px 25px 120px 25px;
+            position: relative;
+            z-index: 2;
         }
 
-        section {
-            margin-bottom: 40px;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--red);
+        h1 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #8c857b;
+            padding-bottom: 15px;
+            color: #1f1e1d;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            font-size: 1.2em;
+            color: #5c5751;
+            margin-bottom: 50px;
         }
 
         h2 {
-            color: var(--red);
-            font-size: 2rem;
-            margin-top: 0;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #2b2927;
         }
 
-        .timeline {
-            position: relative;
-            margin: 30px 0;
-            padding-left: 30px;
-            border-left: 3px solid var(--green);
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: justify;
         }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
+        /* Contenedor de los emojis flotantes */
+        #pizza-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.15s ease-out;
         }
 
-        .timeline-item::before {
-            content: '';
+        .floating-emoji {
             position: absolute;
-            left: -37px;
-            top: 5px;
-            background: var(--green);
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .time {
-            font-weight: bold;
-            color: var(--green);
-            display: block;
-            font-size: 1.1rem;
-        }
-
-        .highlight-box {
-            background-color: #E8F5E9;
-            border: 1px solid var(--green);
-            padding: 20px;
-            border-radius: 6px;
-            margin-top: 20px;
-        }
-
-        .highlight-box h3 {
-            margin-top: 0;
-            color: var(--green);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 6px;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
+            font-size: 3.2rem;
+            user-select: none;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>The History of Pizza</h1>
-        <p>From ancient flatbreads to a global culinary icon</p>
-    </header>
-
-    <div class="container">
-
-        <section id="origins">
-            <h2>1. Ancient Origins</h2>
-            <p>Although modern pizza is deeply tied to Italy, the practice of baking flatbreads with toppings dates back thousands of years across the Mediterranean:</p>
-            <ul>
-                <li><strong>Ancient Egypt:</strong> Flatbreads shaped and colored like the sun were prepared after the discovery of yeast.</li>
-                <li><strong>Ancient Greece:</strong> Citizens ate <em>plakuntos</em>, a dough garnished with herbs, spices, garlic, and onions.</li>
-                <li><strong>Persian Empire:</strong> Soldiers under King Darius I the Great cooked flatbreads on their shields, topping them with melted cheese and dates.</li>
-            </ul>
-        </section>
-
-        <section id="naples">
-            <h2>2. The Birthplace: Naples</h2>
-            <p>Pizza as we know it today <strong>was born in the city of Naples, Italy, during the 18th century</strong>. In its beginnings, it was a humble, affordable food eaten by working-class street vendors and laborers.</p>
-            <p>The game changer was the introduction of the <strong>tomato</strong> from the Americas to Europe. Initially, people believed tomatoes were poisonous and only used them as decorative plants. However, necessity and resourcefulness led Neapolitan peasants to add them to their flatbreads, creating the foundation of modern pizza.</p>
-            
-            <div class="highlight-box">
-                <h3>The Origin of Pizza Margherita (1889)</h3>
-                <p>In June 1889, Neapolitan pizza chef <strong>Raffaele Esposito</strong> was asked to prepare pizzas for the visiting King Umberto I and Queen Margherita of Savoy. The queen chose her favorite: a combination that beautifully represented the colors of the Italian flag.</p>
-                <ul>
-                    <li>🔴 <strong>Tomato:</strong> Red</li>
-                    <li>⚪ <strong>Mozzarella:</strong> White</li>
-                    <li>🟢 <strong>Basil:</strong> Green</li>
-                </ul>
-                <p>In her honor, this iconic style was named <strong>Pizza Margherita</strong>.</p>
-            </div>
-        </section>
-
-        <section id="globalization">
-            <h2>3. Global Domination</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="time">1905</span>
-                    <p>Mass Italian immigration brought the recipe to the United States. In this year, <strong>Lombardi's</strong> opened in Little Italy (New York City), officially recognized as the first pizzeria in North America.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="time">Post-World War II</span>
-                    <p>Allied soldiers returning home from Europe brought back a massive craving for pizza, popularizing it across Western countries and sparking the rise of global fast-food franchises.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="time">Today</span>
-                    <p>Today, pizza stands as one of the most popular and adapted dishes on Earth, evolving alongside local cultures with endless variations of crusts and creative toppings.</p>
-                </div>
-            </div>
-        </section>
-
+    <!-- Variedad de emojis relacionados con la pizza e ingredientes -->
+    <div id="pizza-container">
+        <div class="floating-emoji" style="top: 10%; left: 7%; transform: rotate(-15deg);">🍕</div>
+        <div class="floating-emoji" style="top: 18%; right: 9%; transform: rotate(20deg);">🍅</div>
+        <div class="floating-emoji" style="top: 35%; left: 10%; transform: rotate(25deg);">🧀</div>
+        <div class="floating-emoji" style="top: 45%; right: 6%; transform: rotate(-20deg);">🌿</div>
+        <div class="floating-emoji" style="top: 62%; left: 6%; transform: rotate(-10deg);">🍄</div>
+        <div class="floating-emoji" style="top: 70%; right: 11%; transform: rotate(15deg);">🫒</div>
+        <div class="floating-emoji" style="top: 84%; left: 12%; transform: rotate(30deg);">🧄</div>
+        <div class="floating-emoji" style="top: 88%; right: 8%; transform: rotate(-15deg);">🥖</div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 - World Kitchen Chronicles. Designed by TheGeekPizza.</p>
-    </footer>
+    <div class="container">
+        <h1>The History of Pizza</h1>
+        <div class="subtitle">From Ancient Flatbreads to a Global Culinary Icon</div>
+
+        <h2>Ancient Origins</h2>
+        <p>
+            The story of pizza begins long before tomatoes were ever introduced to Europe. Ancient civilizations across the Mediterranean, including the Egyptians, Greeks, and Romans, regularly baked flatbreads topped with olive oil, herbs, garlic, and cheese. In ancient Greece, citizens ate a flat bread called <em>plakous</em>, which was flavored with toppings like onions, herbs, and garlic.
+        </p>
+        <p>
+            Roman soldiers and peasants consumed similar flatbreads known as <em>panis focacius</em>, the direct ancestor of modern Italian focaccia. These early dishes served both as a meal and as an edible plate for other foods.
+        </p>
+
+        <h2>The Birth of Modern Pizza in Naples</h2>
+        <p>
+            Modern pizza as we recognize it today originated in Naples, Italy, during the 18th century. Naples was a bustling, densely populated port city where working-class residents, known as <em>lazzaroni</em>, needed inexpensive food that could be eaten quickly while walking or working outdoors.
+        </p>
+        <p>
+            Street vendors sold flatbreads topped with simple ingredients such as garlic, lard, salt, caciocavallo cheese, and basil. When tomatoes—brought to Europe from the Americas in the 16th century—were finally embraced by Neapolitans as a safe and tasty ingredient in the late 1700s, the classic tomato-topped pizza was born.
+        </p>
+
+        <h2>The Royal Legend of Pizza Margherita</h2>
+        <p>
+            In 1889, King Umberto I and Queen Margherita of Savoy visited Naples. According to popular culinary legend, the Queen grew tired of the heavy French cuisine served at court and requested an assortment of pizzas from Pizzeria Brandi, run by baker Raffaele Esposito.
+        </p>
+        <p>
+            Esposito prepared three varieties, but the Queen favored one topped with red tomatoes, white mozzarella cheese, and green basil—ingredients chosen to represent the colors of the newly unified Italian flag. In her honor, this creation was named Pizza Margherita, cementing its place in history.
+        </p>
+
+        <h2>Crossing the Atlantic to America</h2>
+        <p>
+            During the late 19th and early 20th centuries, millions of Italian immigrants arrived in the United States, bringing their culinary traditions with them. In 1905, Gennaro Lombardi opened the first licensed pizzeria in America, Lombardi's, in New York City.
+        </p>
+        <p>
+            Initially, pizza remained popular primarily within Italian-American neighborhoods. However, after World War II, American soldiers returning from Italy brought back a strong appetite for the dish. Pizzerias quickly spread across the nation, giving rise to distinct regional styles such as New York-style thin crust, Chicago deep-dish, and Detroit-style pizza.
+        </p>
+
+        <h2>A Worldwide Phenomenon</h2>
+        <p>
+            By the second half of the 20th century, refrigeration, frozen pizza, and international delivery chains transformed pizza into one of the most recognized foods on Earth. In 2017, UNESCO officially recognized the traditional art of the Neapolitan pizza maker (<em>Pizzaiuolo</em>) as part of the world's Intangible Cultural Heritage.
+        </p>
+    </div>
+
+    <script>
+        const pizzaContainer = document.getElementById('pizza-container');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            const scrollProgress = docHeight > 0 ? scrollTop / docHeight : 0;
+            const maxOpacity = 0.35;
+            const currentOpacity = Math.sin(scrollProgress * Math.PI) * maxOpacity;
+
+            pizzaContainer.style.opacity = Math.max(0, currentOpacity).toFixed(3);
+        });
+    </script>
 
 </body>
 </html>
