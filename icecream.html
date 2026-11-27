@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The History of Ice Cream</title>
     <link rel="icon" type="image/x-icon" href="icecream.ico">
-    <!-- Enlace actualizado a styles.css -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Audio configurado en bucle infinito -->
+    <audio id="bg-music" src="jazz.mp3" loop preload="auto"></audio>
 
     <div id="emoji-container">
         <div class="floating-emoji" style="top: 10%; left: 7%; transform: rotate(-15deg);">🍦</div>
@@ -64,6 +66,7 @@
     </div>
 
     <script>
+        // Efecto de opacidad de los emojis al hacer scroll
         const emojiContainer = document.getElementById('emoji-container');
 
         window.addEventListener('scroll', () => {
@@ -76,6 +79,20 @@
 
             emojiContainer.style.opacity = Math.max(0, currentOpacity).toFixed(3);
         });
+
+        // Reproducir jazz.mp3 en bucle infinito al hacer clic en cualquier lugar
+        const bgMusic = document.getElementById('bg-music');
+
+        function startMusic() {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(error => {
+                    console.log("Esperando interacción del usuario para reproducir audio.");
+                });
+            }
+        }
+
+        document.addEventListener('click', startMusic);
+        document.addEventListener('touchstart', startMusic);
     </script>
 
 </body>
